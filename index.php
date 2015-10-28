@@ -142,7 +142,7 @@ function getFiles(){
                 <?php foreach ($files_list as $key => $value) { ?>
                     <tr>
                         <td class="text-center"><?= $key ?></td>
-                        <td><?= $value ?></td>
+                        <td><a href="#" class="load_file" data-filename="<?= $value ?>"><?= $value ?></a></td>
                         <td class="download_box"><a href="#" class="download_box download_file"><span data-filename="<?= $value ?>" class="glyphicon glyphicon-download"></span></a></td>
                         <td class="delete_box"><a href="#" class="delete_box delete_file"><span data-filename="<?= $value ?>" class="glyphicon glyphicon-remove-circle"></span></a></td>
                     </tr>
@@ -180,6 +180,7 @@ function getFiles(){
 <script type="text/javascript">
     var file = $('#base_path').val() + '/' + $('#file_name').val();
     var url = 'ajax_handler.php';
+    var upload_path = '<?= $upload_path ?>';
 
     $('#btn_add').click(function() {
         addTableRow($('#tbl_data'));
@@ -251,6 +252,11 @@ function getFiles(){
                 }
             });
         }
+    });
+    $('.load_file').on('click', function(e){
+        $('#base_path').val(upload_path);
+        $('#file_name').val(e.target.dataset.filename);
+//        console.log(e.target.dataset.filename);
     });
 
     function delete_line(key){
