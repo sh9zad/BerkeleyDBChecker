@@ -262,7 +262,7 @@ function getFiles(){
     function delete_line(key){
         if(confirm('Are you sure?'))
             $.ajax({
-                url: '../handler/ajax_handler_db_check.php',
+                url: url,
                 type: 'post',
                 data: {action: 'remove_data', key: key, file: file},
                 success: function(data){
